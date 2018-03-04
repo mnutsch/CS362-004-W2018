@@ -1,0 +1,18 @@
+/*******************************************************************
+* Name: BugsInTeammateCode.txt
+* Author: Matt Nutsch
+* Date: 3-4-2018
+* Description:
+* This code lists bugs found in the Alex Li's dominion code,
+* found by Matt Nutsch.
+********************************************************************/
+
+These are the bugs that I found in the Dominion code:
+
+fullDeckCount() = This function does not return the proper count of cards in the deck. 
+
+scoreFor() = This function does not return the proper score.
+
+adventurer_card() = This function does not properly put treasures into the player's hand.
+
+smithy_card()    = This function does not properly add cards to the player's hand.
