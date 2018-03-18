@@ -83,7 +83,7 @@ public class UrlValidatorTest extends TestCase {
 
    public boolean segmentTest(UrlValidator urlVal, String url) { return urlVal.isValid(url); }
 
-   public void testYourFirstPartition()
+   public void testSchemePartition()
    {
        // can't test other valid schemes due to a bug in RegexValidator that throws an IllegalArgumentException for valid schemes other than "http://"
        String validPartitionSet[] = {"http://", ""};
@@ -126,6 +126,7 @@ public class UrlValidatorTest extends TestCase {
        // invalid schemes test
        System.out.println("\n**********************");
        System.out.println("Testing Invalid Schemes");
+       System.out.println("note: failed test indicates isValid() returned true for an invalid partition segment");
        System.out.println("**********************\n");
 
        for (int i = 0; i < invalidPartitionSet.length; i++) {
@@ -134,20 +135,64 @@ public class UrlValidatorTest extends TestCase {
 
            if (!segmentTest(urlVal, url)) {
                passes++;
-               System.out.printf("Test #%d: scheme - %s | url - %s | Result - PASSED\n", i+1, invalidPartitionSet[i], url);
+               System.out.printf("Test #%d: scheme - %s | url - %s | Result - PASSED\n", i + 1, invalidPartitionSet[i], url);
+           } else {
+               fails++;
+               System.out.printf("Test #%d: scheme - %s | url - %s | Result - FAILED\n", i + 1, invalidPartitionSet[i], url);
+           }
+       }
+   }
+   
+   public void testAuthorityPartition(){
+       String validPartitionSet[] = {"www.google.com", "go.com", "go.au", "0.0.0.0", "255.255.255.255", "255.com"};
+       String invalidPartitionSet[] = {"256.256.256.256", "1.2.3.4.5", "1.2.3.4", "1.2.3", ".1.2.3.4", "go.a"};
+       int passes = 0;
+       int fails = 0;
+       int testnumber = 0;
+       String scheme = "http://";
+       String url = "";
+       UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+       // valid authorities test
+       System.out.println("\n**********************");
+       System.out.println("Testing Valid Authorities");
+       System.out.println("**********************\n");
+
+       for (int i = 0; i < validPartitionSet.length; i++) {
+           testnumber++;
+           url = scheme + validPartitionSet[i];
+
+           if (segmentTest(urlVal, url)) {
+               passes++;
+               System.out.printf("Test #%d: authority - %s | url - %s | Result - PASSED\n", i+1, validPartitionSet[i], url);
            }
 
            else {
                fails++;
-               System.out.printf("Test #%d: scheme - %s | url - %s | Result - FAILED\n", i+1, invalidPartitionSet[i], url);
+               System.out.printf("Test #%d: authority - %s | url - %s | Result - FAILED\n", i+1, validPartitionSet[i], url);
            }
        }
 
-   }
-   
-   public void testYourSecondPartition(){
-		 //You can use this function to implement your Second Partition testing	   
+       // invalid authorities test
+       System.out.println("\n**********************");
+       System.out.println("Testing Invalid Authorities");
+       System.out.println("note: failed test indicates isValid() returned true for an invalid partition segment");
+       System.out.println("**********************\n");
 
+       for (int i = 0; i < invalidPartitionSet.length; i++) {
+           testnumber++;
+           url = scheme + invalidPartitionSet[i];
+
+           if (!segmentTest(urlVal, url)) {
+               passes++;
+               System.out.printf("Test #%d: authority - %s | url - %s | Result - PASSED\n", i+1, invalidPartitionSet[i], url);
+           }
+
+           else {
+               fails++;
+               System.out.printf("Test #%d: authority - %s | url - %s | Result - FAILED\n", i+1, invalidPartitionSet[i], url);
+           }
+       }
    }
    
    public void testPathPartition() {
