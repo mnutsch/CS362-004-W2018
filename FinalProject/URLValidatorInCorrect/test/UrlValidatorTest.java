@@ -194,6 +194,59 @@ public class UrlValidatorTest extends TestCase {
            }
        }
    }
+
+    public void testPortPartition(){
+        String validPartitionSet[] = {":80", ":65535", ":0", ""};
+        String invalidPartitionSet[] = {":-1", ":65536", ":65a"};
+        int passes = 0;
+        int fails = 0;
+        int testnumber = 0;
+        String scheme = "http://";
+        String authority = "www.google.com";
+        String url = "";
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+        // valid ports test
+        System.out.println("\n**********************");
+        System.out.println("Testing Valid Ports");
+        System.out.println("**********************\n");
+
+        for (int i = 0; i < validPartitionSet.length; i++) {
+            testnumber++;
+            url = scheme + authority + validPartitionSet[i];
+
+            if (segmentTest(urlVal, url)) {
+                passes++;
+                System.out.printf("Test #%d: port - %s | url - %s | Result - PASSED\n", i+1, validPartitionSet[i], url);
+            }
+
+            else {
+                fails++;
+                System.out.printf("Test #%d: port - %s | url - %s | Result - FAILED\n", i+1, validPartitionSet[i], url);
+            }
+        }
+
+        // invalid ports test
+        System.out.println("\n**********************");
+        System.out.println("Testing Invalid Ports");
+        System.out.println("note: failed test indicates isValid() returned true for an invalid partition segment");
+        System.out.println("**********************\n");
+
+        for (int i = 0; i < invalidPartitionSet.length; i++) {
+            testnumber++;
+            url = scheme + invalidPartitionSet[i];
+
+            if (!segmentTest(urlVal, url)) {
+                passes++;
+                System.out.printf("Test #%d: port - %s | url - %s | Result - PASSED\n", i+1, invalidPartitionSet[i], url);
+            }
+
+            else {
+                fails++;
+                System.out.printf("Test #%d: port - %s | url - %s | Result - FAILED\n", i+1, invalidPartitionSet[i], url);
+            }
+        }
+    }
    
    public void testQueryStringPartition() {
        String validPartitionSet[] = {"?key=value",
