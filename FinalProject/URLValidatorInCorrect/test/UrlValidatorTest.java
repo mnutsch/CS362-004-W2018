@@ -207,7 +207,7 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println("\n\n====================================================================");
 	   System.out.println("PART 2: PARTITION TESTS - authority\n");
        String validPartitionSet[] = {"www.google.com", "go.com", "go.au", "0.0.0.0", "255.255.255.255", "255.com"};
-       String invalidPartitionSet[] = {"256.256.256.256", "1.2.3.4.5", "1.2.3.4", "1.2.3", ".1.2.3.4", "go.a"};
+       String invalidPartitionSet[] = {"256.256.256.256", "1.2.3.4.5", "1.2.3.4.", "1.2.3", ".1.2.3.4", "go.a"};
        int passes = 0;
        int fails = 0;
        int testnumber = 0;
