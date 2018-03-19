@@ -648,10 +648,6 @@ public class UrlValidatorTest extends TestCase {
 		   }
 	   }
 	   
-	   // Can continue to add combinations of valid and invalid segments...
-	   
-	   
-	   
 	   System.out.printf("\nTotal Tests: %d: PASSED - %d | FAILED - %d\n", testnumber, passes, fails);
    }
 }
