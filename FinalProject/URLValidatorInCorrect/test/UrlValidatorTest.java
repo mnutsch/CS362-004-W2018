@@ -264,7 +264,7 @@ public class UrlValidatorTest extends TestCase {
        String url = "";
        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 
-       // valid schemes test
+       // valid queries test
        System.out.println("\n**********************");
        System.out.println("Testing Valid Queries");
        System.out.println("**********************\n");
@@ -284,7 +284,7 @@ public class UrlValidatorTest extends TestCase {
 
        }
 
-       // invalid schemes test
+       // invalid queries test
        System.out.println("\n**********************");
        System.out.println("Testing Invalid Queries");
        System.out.println("**********************\n");
@@ -328,7 +328,7 @@ public class UrlValidatorTest extends TestCase {
        String url = "";
        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 
-       // valid schemes test
+       // valid paths test
        System.out.println("\n**********************");
        System.out.println("Testing Valid Paths");
        System.out.println("**********************\n");
@@ -348,7 +348,7 @@ public class UrlValidatorTest extends TestCase {
 
        }
 
-       // invalid schemes test
+       // invalid paths test
        System.out.println("\n**********************");
        System.out.println("Testing Invalid Paths");
        System.out.println("**********************\n");
