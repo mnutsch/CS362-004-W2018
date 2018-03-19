@@ -300,7 +300,7 @@ public class UrlValidatorTest extends TestCase {
 
         for (int i = 0; i < invalidPartitionSet.length; i++) {
             testnumber++;
-            url = scheme + invalidPartitionSet[i];
+            url = scheme + authority + invalidPartitionSet[i];
 
             if (!segmentTest(urlVal, url)) {
                 passes++;
