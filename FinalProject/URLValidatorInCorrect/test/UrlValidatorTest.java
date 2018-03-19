@@ -30,15 +30,16 @@ public class UrlValidatorTest extends TestCase {
         //this function performs manual testing
         System.out.println("Performing manual tests...");
 
-        String[] schemes = {"http","https"};
-        UrlValidator urlValidator = new UrlValidator(schemes);
+//        String[] schemes = {"http","https"};
+//        UrlValidator urlValidator = new UrlValidator(schemes);
+        UrlValidator urlValidator = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
         String urlToTest = "";
 
         System.out.println("Test # 1");
         urlToTest = "http://www.oregonstate.edu";
         System.out.println("Testing if the following URL is valid: " + urlToTest);
         if (urlValidator.isValid(urlToTest)) {
-        System.out.println("url is valid");
+        		System.out.println("url is valid");
         } else {
             System.out.println("url is invalid");
         }
@@ -75,6 +76,33 @@ public class UrlValidatorTest extends TestCase {
        System.out.println("Testing if the following URL is valid: " + urlToTest);
        if (urlValidator.isValid(urlToTest)) {
            System.out.println("url is valid");
+       } else {
+           System.out.println("url is invalid");
+       }
+       
+       System.out.println("Test # 6");
+       urlToTest = "http://oregonstate.edu";
+       System.out.println("Testing if the following URL is valid: " + urlToTest);
+       if (urlValidator.isValid(urlToTest)) {
+       		System.out.println("url is valid");
+       } else {
+           System.out.println("url is invalid");
+       }
+       
+       System.out.println("Test # 7");
+       urlToTest = "http://www.google.com";
+       System.out.println("Testing if the following URL is valid: " + urlToTest);
+       if (urlValidator.isValid(urlToTest)) {
+       		System.out.println("url is valid");
+       } else {
+           System.out.println("url is invalid");
+       }
+       
+       System.out.println("Test # 8");
+       urlToTest = "http://www.google.com/path";
+       System.out.println("Testing if the following URL is valid: " + urlToTest);
+       if (urlValidator.isValid(urlToTest)) {
+       		System.out.println("url is valid");
        } else {
            System.out.println("url is invalid");
        }
@@ -369,10 +397,11 @@ public class UrlValidatorTest extends TestCase {
        }
    }
    
+   
    public void testIsValid()
    {
 	   //You can use this function for programming based testing
-
+	   // Create URLs
    }
    
 
